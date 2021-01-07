@@ -1,0 +1,80 @@
+<html>
+    <herf>
+        <title>脳の活性化問題</title>
+        <meta charset="utf-8">
+    </herf>
+    <body>
+        <header>
+            <h1 style="font-size: 70px;">頭の活性化問題！</h1>
+        </header>
+        <main>
+           <div class="big"><span id="mae"></span>×<span id="usi"></span>=?</div>
+           <input type="text" id="te" class="big">
+           <input type="button" value="決定" onclick="kurikku();" class="big">
+        </main>
+        <br />
+        <footer>
+            <div class="miri">現在の難易度:<span id="nann"></span></div>
+            <h3 style="font-size: 50px;">難易度</h3>
+            <input value="初級" type="button" onclick="kyuu(1,10,1);" style="font-size: 50px;">
+            <input value="中級" type="button" onclick="kyuu(2,13,2);" style="font-size: 50px;">
+            <input value="上級" type="button" onclick="kyuu(8,23,3);" style="font-size: 50px;">
+            <input value="神級" type="button" onclick="kyuu(23,87,4);" style="font-size: 50px;">
+        </footer>
+    </body>
+    <script>
+        let m = document.getElementById("mae");
+        let u = document.getElementById("usi");
+        let n = document.getElementById("nann");
+        let ma;
+        let us;
+        let an;
+        let t;
+        let kake = 10;
+        let tasi = 1;
+        function mon (){
+            ma = Math.floor(tasi+Math.random()*kake);
+            us = Math.floor(tasi+Math.random()*kake);
+            m.innerHTML = ma;
+            u.innerHTML = us;
+            an = ma*us;
+            document.getElementById("te").value = "";
+        }
+        function kurikku(){
+            t = document.getElementById("te").value;
+            if (t == an) {
+                alert("正解！");
+            }else{
+                alert("残念...。正解は"+an+"でした。");
+            }
+            mon();
+        }
+        function kyuu(tasiz,kakez,muzu){
+            tasi = tasiz;
+            kake = kakez;
+            mon();
+            alert("難易度が変更されました")
+            if (muzu == 1){
+                n.innerHTML = "初級";
+            }else if (muzu == 2){
+                n.innerHTML = "中級";
+            }else if (muzu == 3){
+                n.innerHTML = "上級";
+            }else{
+                n.innerHTML = "神級";
+            }
+        }
+        window.onload = function(){
+            mon();
+            n.innerHTML = "初級";
+        }
+    </script>
+    <style>
+        .big{
+            font-size: 100px;
+        }
+        .miri{
+            font-size: 60px;
+        }
+    </style>
+</html>
