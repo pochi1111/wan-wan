@@ -1,0 +1,46 @@
+<html>
+    <herf>
+        <title>お正月までのカウントダウン</title>
+        <meta charset="utf-8">
+    </herf>
+    <body>
+        <main>
+            <h1 class="count">お正月までのカウントダウン</h1>
+            <div class="count">
+                あと<span id="day"></span>日<span id="h"></span>時間<span id="min"></span>分<span id="s"></span>秒です！
+            </div>
+        </main>
+    </body>
+    <style>
+        .count{
+            font-size: 100px;
+        }
+    </style>
+    <script>
+        const ima = new Date();
+        let next = ima.getFullYear()+1;
+        const mokuhyou = Date.parse(next,1,1);
+        let imano = Date.now();
+        let itiji;
+        let nokori;
+        let date = document.querySelector("#day");
+        let he = document.querySelector("#h");
+        let m = document.querySelector("#min");
+        let sm = document.querySelector("#s");
+        function maikai (){
+            next = ima.getFullYear()+1;
+            imano = Date.now();
+            nokori = mokuhyou - imano;
+            itiji = Math.floor(nokori / 1000 / 60 / 60 / 24);
+            date.innerHTML = itiji;
+            itiji = Math.floor(nokori / 1000 / 60 / 60) % 24;
+            he.innerHTML = itiji;
+            itiji = Math.floor(nokori / 1000 / 60) % 60;
+            m.innerHTML = itiji;
+            itiji = Math.floor(nokori / 1000) % 60;
+            sm.innerHTML = itiji;
+            setTimeout(maikai,1000);
+        }
+        maikai();
+    </script>
+</html>
